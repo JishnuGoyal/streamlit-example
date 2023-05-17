@@ -1,16 +1,5 @@
-import requests
 import streamlit as st
-
-"""
-# Welcome to Streamlit!
-
-Edit `/streamlit_app.py` to customize this app to your heart's desire :heart:
-
-If you have any questions, checkout our [documentation](https://docs.streamlit.io) and [community
-forums](https://discuss.streamlit.io).
-
-In the meantime, below is an example of what you can do with just a few lines of code:
-"""
+import requests
 
 
 def fetch(session, url):
@@ -36,7 +25,7 @@ def main():
 
         if submitted:
             st.write("Result")
-            data = fetch(session, f"https://picsum.photos/id/info")
+            data = fetch(session, f"https://picsum.photos/id/{index}/info")
             if data:
                 st.write(data['download_url'], caption=f"The user will be able to repay: {data['author']}")
             else:
