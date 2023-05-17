@@ -27,7 +27,7 @@ def main():
             st.write("Result")
             data = fetch(session, f"http://192.168.43.8:3000/predict?params=0 1 1 1 1 0.052631579 0 0 0.04 0 0 0.005289629 0.005289629 0 0 0.213284583 0.005747126 0.005813953 0.108866442 0 1")
             if data:
-                st.write(data['download_url'], caption=f"The user will be able to repay: {data['author']}")
+                st.write(data, caption=f"The user will be able to repay: {data}")
             else:
                 st.error("Error")
 
