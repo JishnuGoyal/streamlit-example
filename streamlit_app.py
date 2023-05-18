@@ -71,18 +71,19 @@ def main():
             flag_email = mapper(flag_email)
 
             api_input = f"http://192.168.1.11:3000/predict?params={flag_mobil} {flag_cont_mobile} {flag_emp_phone} {region_rating_client_w_city} {region_rating_client} {count_fam_mem} {flag_own_car} {flag_phone} {amt_req_credit_bureau_year} {reg_city_not_work_city} {flag_work_phone} {days_employed} {employment_years} {live_city_not_work_city} {cnt_children} {amt_income_total} {obs_30_cnt_social_circle} {obs_60_cnt_social_circle} {amt_goods_price} {amt_req_credit_bureau_qrt} {flag_email}"
-            print("old input:", api_input)
             # data = fetch(session,
             #              f"http://192.168.1.11:3000/predict?params={flag_mobil} {flag_cont_mobile} {flag_emp_phone} {region_rating_client_w_city} {region_rating_client} {count_fam_mem} {flag_own_car} {flag_phone} {amt_req_credit_bureau_year} {reg_city_not_work_city} {flag_work_phone} {days_employed} {employment_years} {live_city_not_work_city} {cnt_children} {amt_income_total} {obs_30_cnt_social_circle} {obs_60_cnt_social_circle} {amt_goods_price} {amt_req_credit_bureau_qrt} {flag_email}")
 
-            new_input = f"http://192.168.1.11:3000/predict?params=0 1 1 1 1 0.052631579 0 0 0.04 0 0 0.005289629 0.005289629 0 0 0.213284583 0.005747126 0.005813953 0.108866442 0 1"
-            print("new input: ", new_input)
+            # new_input = f"http://192.168.1.11:3000/predict?params=0 1 1 1 1 0.052631579 0 0 0.04 0 0 0.005289629 0.005289629 0 0 0.213284583 0.005747126 0.005813953 0.108866442 0 1"
+            # print("new input: ", new_input)
 
             data = fetch(session, api_input)
+            if data is None:
+                st.error("Server is currently busy.")
             if data:
-                st.write(data, caption=f"The user will be able to repay: {data}")
+                st.write("The applicant won\'t be able to repay.")
             else:
-                st.error("Error")
+                st.write("The applicant shall be able to repay.")
 
 
 if __name__ == '__main__':
